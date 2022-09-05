@@ -56,9 +56,10 @@ define Device/Default
   PROFILES = Default
   KERNEL_NAME := Image.gz
   KERNEL := kernel-bin
-  IMAGES := boot.img system.img
+  IMAGES := boot.img system.img sysupgrade.bin
   IMAGE/boot.img := qcom-bootimg | append-metadata
   IMAGE/system.img := qcom-systemimg | append-metadata
+  IMAGE/sysupgrade.bin := append-rootfs | pad-to 64k | sysupgrade-tar | append-metadata
   QCOM_CMDLINE := "earlycon console=ttyMSM0,115200 console=tty0 rw"
   QCOM_DTS_DIR := qcom/
   QCOM_DTS = $$(QCOM_DTS_DIR)$$(SOC)-$(lastword $(subst _, ,$(1)))

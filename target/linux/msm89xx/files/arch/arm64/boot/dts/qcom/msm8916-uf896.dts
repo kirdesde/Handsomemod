@@ -1,0 +1,106 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Copyright (C) 2021-2022 Dirk Buchwalder <buchwalder@posteo.de>
+ *
+ */
+ 
+/dts-v1/;
+#include "msm8916-handsome-openstick-common.dtsi"
+
+/ {
+	model = "Openstick UF896";
+	compatible = "openstick,uf896", "qcom,msm8916";
+    aliases {
+        led-boot = &red;
+		led-failsafe = &red;
+		led-running = &green;
+		led-upgrade = &red;
+    };
+
+	gpio-keys {
+		compatible = "gpio-keys";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		autorepeat;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&gpio_keys_default>;
+		label = "GPIO Buttons";
+
+		reset {
+			label = "Restart";
+			gpios = <&msmgpio 35 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_RESTART>;
+		};
+	};
+
+	leds {
+		pinctrl-names = "default";
+		pinctrl-0 = <&msmgpio_leds>;
+
+		compatible = "gpio-leds";
+
+		blue: blue {
+			label = "blue";
+			gpios = <&msmgpio 81 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "phy0tx";
+			default-state = "off";
+		};
+
+		green: green {
+			label = "green";
+			gpios = <&msmgpio 83 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		red: red {
+			label = "red";
+			gpios = <&msmgpio 82 GPIO_ACTIVE_HIGH>;
+			default-state = "on";
+		};
+
+		sim_sel {
+			label = "sim:sel";
+			gpios = <&msmgpio 2 GPIO_ACTIVE_HIGH>;
+			default-state = "on";
+		};
+
+		sim_en {
+			label = "sim:en";
+			gpios = <&msmgpio 1 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		sim_sel2 {
+			label = "sim:sel2";
+			gpios = <&msmgpio 0 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		sim_en2 {
+			label = "sim:en2";
+			gpios = <&msmgpio 3 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+
+	};
+};
+
+&msmgpio {
+	msmgpio_leds: msmgpio-leds {
+		pins = "gpio0","gpio1","gpio2","gpio3","gpio20","gpio21","gpio22","gpio81","gpio82","gpio83";
+		function = "gpio";
+
+		bias-disabled;
+	};
+
+	gpio_keys_default: gpio_keys_default {
+		pins = "gpio35";
+		function = "gpio";
+
+		drive-strength = <8>;
+		input-enable;
+		bias-pull-up;
+	};
+};

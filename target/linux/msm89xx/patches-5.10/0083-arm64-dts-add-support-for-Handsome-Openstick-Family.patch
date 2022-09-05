@@ -21,7 +21,7 @@ diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefi
 index 170e29487..aefa0ace8 100644
 --- a/arch/arm64/boot/dts/qcom/Makefile
 +++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -28,6 +28,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5nlte.dtb
+@@ -28,6 +28,11 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5nlte.dtb
  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86518.dtb msm8916-wingtech-wt86518-modem.dtb
  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86528.dtb msm8916-wingtech-wt86528-modem.dtb
  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb msm8916-wingtech-wt88047-modem.dtb
@@ -29,6 +29,7 @@ index 170e29487..aefa0ace8 100644
 +dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-handsome-openstick-ufi001c.dtb
 +dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-handsome-openstick-sp970.dtb
 +dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-handsome-openstick-uz801.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-uf896.dtb
  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-bullhead-rev-101.dtb
  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-msft-lumia-octagon-talkman.dtb
  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-xiaomi-libra.dtb
