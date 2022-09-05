@@ -46,20 +46,15 @@ define Build/qcom-bootimg
 	rm -f $@.fake-ramdisk
 endef
 
-# Step2 Build the System.img ext4 -> simg
-define Build/qcom-systemimg
-	img2simg $(IMAGE_ROOTFS) $@
-endef
-
-
 define Device/Default
   PROFILES = Default
   KERNEL_NAME := Image.gz
   KERNEL := kernel-bin
   IMAGES := boot.img system.img sysupgrade.bin
   IMAGE/boot.img := qcom-bootimg | append-metadata
-  IMAGE/system.img := qcom-systemimg | append-metadata
-  IMAGE/sysupgrade.bin := append-rootfs | pad-to 64k | sysupgrade-tar | append-metadata
+  BLOCKSIZE := 512k
+  IMAGE/system.img := append-rootfs | pad-rootfs | pad-to $$$${BLOCKSIZE} | append-metadata
+  IMAGE/sysupgrade.bin/squashfs := append-rootfs | pad-to 64k | sysupgrade-tar kernel=$$$$(KDIR)/tmp/handsomemod-$(firstword $(subst /, ,$(TARGETID)))-$(lastword $(subst /, ,$(TARGETID)))-$(1)-ext4-boot.img rootfs=$$$$@ | append-metadata
   QCOM_CMDLINE := "earlycon console=ttyMSM0,115200 console=tty0 rw"
   QCOM_DTS_DIR := qcom/
   QCOM_DTS = $$(QCOM_DTS_DIR)$$(SOC)-$(lastword $(subst _, ,$(1)))
