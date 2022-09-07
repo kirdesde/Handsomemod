@@ -66,7 +66,7 @@ define Device/openstick_uf896
   $(Device/msm8916)
   DEVICE_VENDOR := Openstick
   DEVICE_MODEL := UF896
-  DEVICE_PACKAGES := openstick-tweaks wpad-basic-wolfssl kmod-qcom-modem losetup
+  DEVICE_PACKAGES := openstick-tweaks wpad-basic-wolfssl kmod-qcom-modem qcom-msm8916-modem-uf896-firmware qcom-msm8916-uf896-wcnss-firmware qcom-msm8916-wcnss-uf896-nv losetup
 endef
 
 TARGET_DEVICES += openstick_uf896
