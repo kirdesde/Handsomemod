@@ -54,7 +54,7 @@ define Device/Default
   IMAGE/boot.img := qcom-bootimg | append-metadata
   BLOCKSIZE := 512k
   IMAGE/system.img := append-rootfs | pad-rootfs | pad-to $$$${BLOCKSIZE} | append-metadata
-  IMAGE/sysupgrade.bin/squashfs := append-rootfs | pad-to 64k | sysupgrade-tar kernel=$$$$(KDIR)/tmp/handsomemod-$(firstword $(subst /, ,$(TARGETID)))-$(lastword $(subst /, ,$(TARGETID)))-$(1)-ext4-boot.img rootfs=$$$$@ | append-metadata
+  IMAGE/sysupgrade.bin/squashfs := append-rootfs | pad-to 64k | sysupgrade-tar kernel=$$$$(KDIR)/tmp/handsomemod-$(firstword $(subst /, ,$(TARGETID)))-$(lastword $(subst /, ,$(TARGETID)))-$(1)-squashfs-boot.img rootfs=$$$$@ | append-metadata
   QCOM_CMDLINE := "earlycon console=ttyMSM0,115200 console=tty0 rw"
   QCOM_DTS_DIR := qcom/
   QCOM_DTS = $$(QCOM_DTS_DIR)$$(SOC)-$(lastword $(subst _, ,$(1)))
